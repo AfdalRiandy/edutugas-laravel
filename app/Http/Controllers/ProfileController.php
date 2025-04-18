@@ -22,9 +22,20 @@ class ProfileController extends Controller
     }
 
     /**
+     * Display the user's profile index.
+     */
+    public function index()
+    {
+        $user = Auth::user();
+    return view('profile.partials.update-profile-information-form', [
+        'user' => $user,
+    ]);
+    }
+
+    /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
 

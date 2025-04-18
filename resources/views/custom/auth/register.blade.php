@@ -41,10 +41,10 @@
                     @endif
 
                     <!-- Registration Form -->
-                    <form method="POST" action="{{ route('register') }}" class="space-y-6">
+                    <form method="POST" action="{{ route('custom.register') }}" class="space-y-6">
                         @csrf
 
-                                                <!-- Role Field -->
+                        <!-- Role Field -->
                         <div>
                             <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Peran Anda</label>
                             <select name="role" id="role" required

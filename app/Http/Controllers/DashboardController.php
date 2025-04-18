@@ -30,11 +30,26 @@ class DashboardController extends Controller
 
     public function dosen()
     {
-        return view('dashboard.dosen'); // Create a view for dosen dashboard
+        $user = Auth::user();
+        
+        if ($user->role !== 'dosen') {
+            abort(403, 'Unauthorized action.');
+        }
+        
+        $createdTasks = $user->tasks()->get();
+        $tasksToReview = $user->tasks()->where('status', 'submitted')->get();
+
+        return view('dashboard.dosen', compact('createdTasks', 'tasksToReview'));
     }
 
     public function mahasiswa()
     {
         return view('dashboard.mahasiswa'); // Create a view for mahasiswa dashboard
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('dashboard.profile', compact('user'));
     }
 }
